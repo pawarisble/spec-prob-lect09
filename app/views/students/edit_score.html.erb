@@ -3,21 +3,24 @@ table,th,td {
     border:2px solid black
 }
 </style>
-
+<br>
 <%=  "วิชาที่คะแนนมากที่สุด :#{@maxSubject}" %>
 <br>
 <%=  "คะแนนเฉลี่ย :#{@avgScore}" %>
 
 <br><br>
-<table>
-    <th>Subject</th>
-    <th>Score</th>
-    <th>Grade</th>
+<table class="container text-center">
+    <thead class="table-danger">
+    <th class="table-danger">Subject</th>
+    <th class="table-danger">Score</th>
+    <th class="table-danger">Grade</th>
     <% if session[:logged_in] == true %>
-        <th>Edit</th> 
-        <% end %>
-    <th>Delete</th>
-        
+        <th class="table-danger">Edit</th> 
+    <% end %>
+    <th class="table-danger">Delete</th>
+    </thead>
+
+    <tbody>
     <% @student.scores.each do |s| %>
         <tr>
             <td><%= s.subject%></td>
@@ -30,6 +33,7 @@ table,th,td {
             
         </tr>
     <%end%>
+    </tbody>
 
 </table>
 <br>

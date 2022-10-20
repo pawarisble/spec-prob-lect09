@@ -1,0 +1,36 @@
+<style>
+table,th,td {
+    border:2px solid black
+}
+</style>
+
+<%=  "วิชาที่คะแนนมากที่สุด :#{@maxSubject}" %>
+<br>
+<%=  "คะแนนเฉลี่ย :#{@avgScore}" %>
+
+<br><br>
+<table>
+    <th>Subject</th>
+    <th>Score</th>
+    <th>Grade</th>
+    <% if session[:logged_in] == true %>
+        <th>Edit</th> 
+        <% end %>
+    <th>Delete</th>
+        
+    <% @student.scores.each do |s| %>
+        <tr>
+            <td><%= s.subject%></td>
+            <td><%= s.point %></td>
+            <td><%= s.grade %></td>
+            <% if session[:logged_in] == true %>
+                <td><%= link_to 'EDIT', '/scores/' + s.id.to_s + '/edit' %></td> 
+                <% end %>
+            <td><%= button_to "DELETE", s, method: :delete %></td>
+            
+        </tr>
+    <%end%>
+
+</table>
+<br>
+<%= link_to 'NEW SUBJECT', '/scores/new' %>
